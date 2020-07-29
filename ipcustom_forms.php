@@ -11,12 +11,12 @@ require_once plugin_dir_path(__FILE__).'IPFModel.php';
 require_once plugin_dir_path(__FILE__).'ipcustom_forms_funcs.php';
 
 // пароль, необходимый для защиты от CSRF-атак
-// это значение желательно менять после каждой новой установки
+// значение этой константы желательно менять при новой установке
 define('IPF_PASSWORD', 'zdbsdwb45bew34xdfvhs34dz34segrgfdzdsseh4b');
 
 $ipcustom_forms_hash = password_hash(IPF_PASSWORD, PASSWORD_DEFAULT);
 
-session_start('ipcustom_forms_session');
+session_start(['name' => 'ipcustom_forms_session']);
 
 if (session_status() === PHP_SESSION_ACTIVE) $_SESSION['ipcustom_forms_hash'] = $ipcustom_forms_hash;
 else wp_die('Something is wrong with session!', 'Session failure');
