@@ -13,6 +13,8 @@ add_action('wp_enqueue_scripts', function() {
 
     wp_enqueue_script('ipcustom_forms_script', plugin_dir_url(__FILE__).'js/ipcustom_forms_script.js');
 
+    wp_enqueue_style('ipcustom_forms_style', plugin_dir_url(__FILE__).'css/ipcustom_forms_style.css');
+
 });
 
 $ipcustom_forms_model = new IPFModel(DB_NAME);
