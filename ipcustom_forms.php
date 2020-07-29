@@ -2,7 +2,7 @@
 /**
  * Plugin Name: Infernus Presence Custom Forms
  * Description: Плагин, реализующий обработку форм.
- * Version: 0.16
+ * Version: 0.2
  * Author: Дмитрий Шумилин
  * Author URI: mailto://dmitri.shumilinn@yandex.ru
  */
@@ -53,21 +53,51 @@ add_action('rest_api_init', function() {
         'methods' => 'POST',
         'callback' => function() {
 
+            if (isset($_POST['email'])) {
 
+                $email = filter_var($_POST['email'], FILTER_SANITIZE_EMAIL);
+
+                if (filter_var($email, FILTER_VALIDATE_EMAIL)) {
+
+                    global $ipcustom_forms_model;
+
+                    if ($ipcustom_forms_model->create_subscriber($email)) $result = ['code' => '0', 'message' => 'Success.'];
+                    else $result = ['code' => '-3', 'message' => 'Database query failure.'];
+
+                } else $result = ['code' => '-2', 'message' => 'Bad arguments.'];
+
+            } else $result = ['code' => '-1', 'message' => 'Too few arguments for this request.'];
+
+            return $result;
 
         },
         'permission_callback' => 'ipcustom_forms_permission'
     ]);
 
-});
-
-add_action('rest_api_init', function() {
-
     register_rest_route('ipcustom/v1/forms/', '/contact', [
         'methods' => 'POST',
         'callback' => function() {
 
-            
+            if (isset($_POST['email']) && isset($_POST['name']) && isset($_POST['text'])) {
+
+                $email = filter_var($_POST['email'], FILTER_SANITIZE_EMAIL);
+
+                $name = htmlspecialchars($_POST['name']);
+
+                $text = htmlspecialchars($_POST['text']);
+
+                if (filter_var($email, FILTER_VALIDATE_EMAIL) && !empty($name) && !empty($text)) {
+
+                    global $ipcustom_forms_model;
+
+                    if ($ipcustom_forms_model->create_letter($email, $name, $text)) $result = ['code' => '0', 'message' => 'Success.'];
+                    else $result = ['code' => '-3', 'message' => 'Database query failure.'];
+
+                } else $result = ['code' => '-2', 'message' => 'Bad arguments.'];
+
+            } else $result = ['code' => '-1', 'message' => 'Too few arguments for this request.'];
+
+            return $result;
 
         },
         'permission_callback' => 'ipcustom_forms_permission'
