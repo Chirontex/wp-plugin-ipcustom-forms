@@ -8,6 +8,7 @@
  */
 
 require_once plugin_dir_path(__FILE__).'IPFModel.php';
+require_once plugin_dir_path(__FILE__).'ipcustom_forms_funcs.php';
 
 add_action('wp_enqueue_scripts', function() {
 
@@ -24,3 +25,31 @@ if (!$ipcustom_forms_model->check_table('form_subscribers') || !$ipcustom_forms_
     if (!$ipcustom_forms_model->create_tables()) wp_die('Something is wrong with DB!', 'Database error');
 
 }
+
+add_action('rest_api_init', function() {
+
+    register_rest_route('ipcustom/v1/forms/', '/subscribe', [
+        'methods' => 'POST',
+        'callback' => function() {
+
+
+
+        },
+        'permission_callback' => 'ipcustom_forms_permission'
+    ]);
+
+});
+
+add_action('rest_api_init', function() {
+
+    register_rest_route('ipcustom/v1/forms/', '/contact', [
+        'methods' => 'POST',
+        'callback' => function() {
+
+            
+
+        },
+        'permission_callback' => 'ipcustom_forms_permission'
+    ]);
+
+});
