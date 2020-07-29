@@ -27,3 +27,22 @@ function ipcustom_forms_button_onoff(buttonId, on)
     else if (!on && !button.hasAttribute('disabled')) button.setAttribute('disabled', '');
 
 }
+
+function ipcustom_forms_submit(buttonId)
+{
+    var email = document.querySelector('#e-mail');
+    var sender_name = document.querySelector('#sender_name');
+    var text_message = document.querySelector('#text_message');
+    var hash = document.querySelector('#ipf_hash').value;
+
+    if (sender_name && text_message) {
+
+
+
+    } else {
+
+        
+
+    }
+
+}
