@@ -3,9 +3,12 @@
 function ipcustom_forms_permission()
 {
 
-    session_start(['name' => 'ipcustom_forms_session']);
+    if (isset($_POST['ipf_key']) && isset($_POST['ipf_key_storage'])) {
 
-    if (isset($_POST['ipf_hash'])) return $_POST['ipf_hash'] === $_SESSION['ipcustom_forms_hash'];
-    else return false;
+        session_start(['name' => 'ipcustom_forms_session']);
+
+        return ($_SESSION[$_POST['ipf_key_storage']] === $_POST['ipf_key']);
+    
+    } else return false;
 
 }

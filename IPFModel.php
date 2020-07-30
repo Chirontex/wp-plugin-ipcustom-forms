@@ -59,14 +59,14 @@ class IPFModel
     public function create_subscriber(string $email)
     {
 
-        return $this->db->query($this->db->prepare("INSERT INTO ".$this->db_name.".".$this->db_prefix."form_subscribers ('email', 'datetime') VALUES ('%s', '%s')", $email, date('Y-m-d H:i:s')));
+        return $this->db->query($this->db->prepare("INSERT INTO ".$this->db_name.".".$this->db_prefix."form_subscribers (`email`, `datetime`) VALUES ('%s', '%s')", $email, date('Y-m-d H:i:s')));
 
     }
 
     public function create_letter(string $email, string $name, string $text)
     {
 
-        return $this->db->query($this->db->prepare("INSERT INTO ".$this->db_name.".".$this->db_prefix."form_letters ('email', 'name', 'text', 'datetime') VALUES ('%s', '%s', '%s', '%s')", $email, $name, $text, date('Y-m-d H:i:s')));
+        return $this->db->query($this->db->prepare("INSERT INTO ".$this->db_name.".".$this->db_prefix."form_letters (`email`, `name`, `text`, `datetime`) VALUES ('%s', '%s', '%s', '%s')", $email, $name, $text, date('Y-m-d H:i:s')));
 
     }
 
