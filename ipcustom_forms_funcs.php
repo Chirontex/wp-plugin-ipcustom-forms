@@ -7,8 +7,13 @@ function ipcustom_forms_permission()
 
         session_start(['name' => 'ipcustom_forms_session']);
 
-        return ($_SESSION[$_POST['ipf_key_storage']] === $_POST['ipf_key']);
+        if ($_SESSION[$_POST['ipf_key_storage']] === $_POST['ipf_key']) $result = true;
+        else $result = false;
+
+        unset($_SESSION[$_POST['ipf_key_storage']]);
     
-    } else return false;
+    } else $result = false;
+
+    return $result;
 
 }

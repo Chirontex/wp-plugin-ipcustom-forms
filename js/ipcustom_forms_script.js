@@ -88,13 +88,31 @@ function ipcustom_forms_submit(buttonId)
 
         if (answer['code'] === '0') {
 
-            modal_title.innerHTML = 'Success!';
-            modal_body.innerHTML = 'Success!';
+            if (sender_name && text_message) {
+
+                modal_title.innerHTML = 'The letter successfully sent';
+                modal_body.innerHTML = 'We will definitely read it and perhaps give an answer.';
+
+            } else {
+
+                modal_title.innerHTML = 'Subscription completed';
+                modal_body.innerHTML = 'You have successfully subscribed to the newsletter. We promise not to share your e-mail address with anyone and use it only for its intended purpose.';
+
+            }
 
         } else {
 
-            modal_title.innerHTML = 'Unexpected answer';
-            modal_body.innerHTML = 'Error: '+answer['code']+', '+answer['message'];
+            if (sender_name && text_message) {
+
+                modal_title.innerHTML = 'Unexpected error';
+                modal_body.innerHTML = 'We do not know what happened, but we\'ll definitely figure it out. Try later.';
+
+            } else {
+
+                modal_title.innerHTML = 'Error';
+                modal_body.innerHTML = 'An error has occurred. You may be trying to subscribe to an e-mail that has already been used.';
+
+            }
 
         }
 
@@ -108,8 +126,8 @@ function ipcustom_forms_submit(buttonId)
 
         button.innerHTML = button_prevtext;
 
-        modal_title.innerHTML = 'Query error';
-        modal_body.innerHTML = textStatus;
+        modal_title.innerHTML = 'Failure';
+        modal_body.innerHTML = 'Data has already been sent during this session. If you haven\'t submitted anything, please try reloading the page.';
 
         modal_trigger.click();
 

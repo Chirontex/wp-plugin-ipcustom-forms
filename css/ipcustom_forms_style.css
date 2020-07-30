@@ -1,3 +1,7 @@
 .modal-header, .modal-body, .modal-footer {
-    background-color: #333;
+    background-color: #272626;
+}
+
+.close-button {
+    color: #ffffff;
 }
