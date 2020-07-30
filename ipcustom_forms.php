@@ -2,7 +2,7 @@
 /**
  * Plugin Name: Infernus Presence Custom Forms
  * Description: Плагин, реализующий обработку форм.
- * Version: 0.21
+ * Version: 0.23
  * Author: Дмитрий Шумилин
  * Author URI: mailto://dmitri.shumilinn@yandex.ru
  */
